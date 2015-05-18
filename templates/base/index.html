@@ -69,6 +69,7 @@
         <!-- /.container-fluid -->
     </nav>
 
+    {% block main_content %}
     <header>
         <div class="header-content">
             <div class="header-content-inner">
@@ -78,7 +79,6 @@
             </div>
         </div>
     </header>
-
 
     <section id="services">
         <div class="container">
@@ -203,7 +203,7 @@
             </div>
         </div>
     </section>
-
+    {% endblock %}
     <!-- jQuery -->
     <script src="{% static "js/jquery.js" %}"></script>
 
