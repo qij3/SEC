@@ -40,6 +40,18 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    'sitegate',
+    'bootstrap3',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = ("django.contrib.auth.context_processors.auth",
+"django.core.context_processors.debug",
+"django.core.context_processors.i18n",
+"django.core.context_processors.media",
+"django.core.context_processors.static",
+"django.core.context_processors.tz",
+"django.contrib.messages.context_processors.messages",
+"django.core.context_processors.request"
 )
 
 MIDDLEWARE_CLASSES = (
@@ -77,18 +89,30 @@ WSGI_APPLICATION = 'sec.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+ON_HEROKU = os.environ.get('ON_HEROKU')
+
+if ON_HEROKU == True:
+
+    # Parse database configuration from $DATABASE_URL
+
+    import dj_database_url
+
+    DATABASES['default'] = dj_database_url.config()
+
+else:
+
+    DATABASES = {
+
+        'default': {
+
+            'ENGINE': 'django.db.backends.sqlite3',
+
+            'NAME': os.path.join(MAIN_DIR, 'db.sqlite3'),
+
+        }
+
     }
-}
 
-# Heroku Settings
-
-# Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES['default'] = dj_database_url.config()
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
