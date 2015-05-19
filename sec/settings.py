@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'core',
     'sitegate',
     'bootstrap3',
+    'storages',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = ("django.contrib.auth.context_processors.auth",
@@ -142,3 +143,15 @@ STATICFILES_DIRS = (
 
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
+
+# AWS Stuff
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_S3_FORCE_HTTP_URL = True
+AWS_QUERYSTRING_AUTH = False
+AWS_ACCESS_KEY_ID = os.environ.get('AWSAccessKeyId')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWSSecretKey')
+
+AWS_STORAGE_BUCKET_NAME = 'sec-startup'
+
+

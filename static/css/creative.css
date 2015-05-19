@@ -60,6 +60,10 @@ p {
     background-color: #222;
 }
 
+.main-content {
+    padding-top: 90px;
+}
+
 .text-faded {
     color: rgba(255,255,255,.7);
 }
@@ -79,7 +83,7 @@ aside {
 .navbar-default {
     border-color: rgba(34,34,34,.05);
     font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
-    background-color: #fff;
+    background-color: #222;
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
     transition: all .35s;
@@ -124,7 +128,7 @@ aside {
 @media(min-width:768px) {
     .navbar-default {
         border-color: rgba(255,255,255,.3);
-        background-color: transparent;
+        background-color: #f05f40;
     }
 
     .navbar-default .navbar-header .navbar-brand {

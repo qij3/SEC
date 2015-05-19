@@ -1,14 +1,19 @@
-{% load staticfiles %}
-<link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
-<div class="row">
+{% extends "base/theme.html" %}
+{% block main_content %}
+  <div class="row main-content">
     <div class="col-md-2"></div>
-    <div class="col-md-8">
-    {% for location in object_list %}
-        <div class='panel'>
-        <h3>{{ location.title }}</h3>
-        <p>{{ location.description }}</p>
-        </div>
-    {% endfor %}
-    </div>
+      <div class="col-md-8">
+        {% for team in object_list %}
+         <div class="panel">
+           <h3><a href="{{ team.get_absolute_url }}">{{ team.title }}</a></h3>
+            {% if team.status %}<p><b>Status: </b>{{ team.status }}</p>{% endif %}
+            {% if team.image_file %}
+              <img class="img-responsive" src="{{ team.image_file.url }}"></img>
+            {% endif %}
+             <p>{{ team.description }}</p>
+         </div>
+         {% endfor %}
+      </div>
     <div class="col-md-2"></div>
-</div>
+  </div>
+{% endblock %}
