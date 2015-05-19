@@ -4,9 +4,13 @@
  		<div class="col-md-2"></div>
  		<div class="col-md-8">
  			<div class='panel'>
- 				<p>{{ team.description }}</p>
+ 				<p>{{ team.title}}</p>
+ 				<p>{{ team.description}}</p>
 			 </div>
 		 </div>
 		 <div class="col-md-2"></div>
+		 <div class="col-md-4">
+		 	<a type="button" href="{% url 'team_update' pk=team.id %}" class="btn btn-large pull-right">Edit</a>
+		 </div>
 	</div>
 {% endblock %}

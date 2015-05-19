@@ -14,7 +14,11 @@ import core.models as coremodels
 from django.views.generic.detail import DetailView
 
 # Create Create view
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
+
+# Logout and redirect
+from django.contrib.auth import logout
+from django.http import HttpResponseRedirect
 
 class LandingView(TemplateView):
     template_name = 'base/index.html'
@@ -34,8 +38,22 @@ class TeamCreateView(CreateView):
   template_name = 'base/form.html'
   fields = "__all__"
 
+class TeamUpdateView(UpdateView):
+    model = coremodels.Team
+    template_name = 'base/form.html'
+    fields = "__all__"
 
 @sitegate_view(widget_attrs={'class': 'form-control', 'placeholder': lambda f: f.label}, template='form_bootstrap3') # This also prevents logged in users from accessing our sign in/sign up page.
 def entrance(request):
     return render(request, 'base/entrance.html', {'title': 'Sign in & Sign up'})
 
+def logout_view(request, next_page=None,
+           template_name='team/list.html',
+           redirect_field_name='team',
+           current_app=None, extra_context=None):
+    """
+    Logs out the user and displays 'You are logged out' message.
+    """
+    logout(request)
+    # Redirect goes here
+    return HttpResponseRedirect('/team/')
