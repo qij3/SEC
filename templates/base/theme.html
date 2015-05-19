@@ -2,8 +2,17 @@
 
 {% block main_content %}
 	{% block navigation %}
-		<li>
- 			<a class="page-scroll" href="/team">Team Review</a>
- 		</li>
+		 <li>
+		 <a class="page-scroll" href="/team">Team Views</a>
+		 </li>
+		 {% if user.is_authenticated %}
+		 <li>
+		 <a class="page-scroll" href="/team/create/">Create Team Profile</a>
+		 </li> 
+		 {% else %}
+		 <li>
+		 <a class="page-scroll" href="/entrance/">Log In</a>
+		 </li> 
+		 {% endif %} 
 	{% endblock %}
 {% endblock %}

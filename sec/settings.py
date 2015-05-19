@@ -43,6 +43,8 @@ INSTALLED_APPS = (
     'sitegate',
     'bootstrap3',
     'storages',
+    'widget_tweaks',
+    'bootstrap_pagination',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = ("django.contrib.auth.context_processors.auth",
