@@ -9,6 +9,8 @@
          <div class="panel">
            <h3><a href="{{ team.get_absolute_url }}">{{ team.title }}</a></h3>
             {% if team.status %}<p><b>Status: </b>{{ team.status }}</p>{% endif %}
+            <p><b>Project Status: </b>{% if team.project_status %}{{ team.get_project_status_display }}{% else %}----{% endif %}</p>
+
             {% if team.image_file %}
               <img class="img-responsive" src="{{ team.image_file.url }}"></img>
             {% endif %}

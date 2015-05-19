@@ -13,12 +13,20 @@ def upload_to_location(instance, filename):
     instance.title = blocks[0]
     return os.path.join('uploads/', filename)
 
+# Team choices
+STATUS_CHOICES = (
+     (0, 'None'),
+     (1, 'In Process'),
+     (2, 'Finished')
+    )
 
 class Team(models.Model):
     title = models.CharField(max_length=300)
     status = models.CharField(max_length=300)
     description = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    project_status = models.IntegerField(choices=STATUS_CHOICES, null=True, blank=True)
+
     image_file = models.ImageField(upload_to=upload_to_location, null=True, blank=True)
 
     def __unicode__(self):

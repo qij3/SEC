@@ -4,8 +4,9 @@
  		<div class="col-md-2"></div>
  		<div class="col-md-8">
  			<div class='panel'>
- 				<p>{{ team.title}}</p>
+ 				<h3>{{ team.title}}</h3>
  				<p>{{ team.description}}</p>
+				<p><b>Status: </b>{% if team.project_status %}{{ team.get_project_status_display }}{% else %}----{% endif %}</p>
 			 </div>
 		 </div>
 		 <div class="col-md-2"></div>
