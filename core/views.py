@@ -24,7 +24,8 @@ from django.http import HttpResponseRedirect
 class LandingView(TemplateView):
     template_name = 'base/index.html'
 
-# Team Vies
+
+# Team Views
 class TeamListView(ListView):
     model = coremodels.Team
     template_name = 'team/list.html'
@@ -81,6 +82,7 @@ class ProfileUpdateView(UpdateView):
     template_name = 'base/form.html'
     fields = ['members', 'working_status', 'description']
 
+
 @sitegate_view(widget_attrs={'class': 'form-control', 'placeholder': lambda f: f.label}, template='form_bootstrap3') # This also prevents logged in users from accessing our sign in/sign up page.
 def entrance(request):
     return render(request, 'base/entrance.html', {'title': 'Sign in & Sign up'})
@@ -93,5 +95,5 @@ def logout_view(request, next_page=None,
     Logs out the user and displays 'You are logged out' message.
     """
     logout(request)
-    # Redirect goes here
-    return HttpResponseRedirect('/team/')
+    # Redirect goes index page
+    return HttpResponseRedirect('/')
