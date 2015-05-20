@@ -10,9 +10,9 @@
            <h3><a href="{{ profile.get_absolute_url }}">{{ profile.user.username }}</a></h3>
             <p><b>User Status: </b>
             {% if profile.working_status %}
-            {{ profile.get_working_status_display }}
+              {{ profile.get_working_status_display }}
             {% else %}----
-            {% endif %}</p>
+              {% endif %}</p>
 
              <p><b>Description: </b>{{ profile.description }}</p>
             <p><b>TEAM: </b>
