@@ -6,8 +6,7 @@
 	    <li class="dropdown">
 	        <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="/team/">Welcome back {{user.username}}! <i class="fa fa-angle-down"></i></a>
             <ul class="dropdown-menu" role="menu">
-              {% if user %}
-              <p> {{ user.username }}</p>
+              {% if request.user.profile %}
               <li><a href="/profile/{{user.id}}/detail">Profile</a></li>
               {% else %}
               <li><a href="/profile/create">Profile</a></li>

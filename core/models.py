@@ -49,13 +49,13 @@ class Team(models.Model):
 
 class Profile(models.Model):
     members = models.ForeignKey(Team, null=True, blank=True)
-    user = models.ForeignKey(User, unique=True)
+    user = models.OneToOneField(User)
     working_status = models.IntegerField(choices=WORKING_STATUS, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
-        return self.user.username
+        return self.description
 
     def get_absolute_url(self):
         return reverse(viewname="profile_list", args=[self.id])
