@@ -8,10 +8,18 @@
         {% for profile in object_list %}
          <div class="panel">
            <h3><a href="{{ profile.get_absolute_url }}">{{ profile.user.username }}</a></h3>
-            {% if profile.working_status %}<p><b>Status: </b>{{ profile.working_status }}</p>{% endif %}
-            <p><b>User Status: </b>{% if profile.working_status %}{{ profile.get_working_status_display }}{% else %}----{% endif %}</p>
+            <p><b>User Status: </b>
+            {% if profile.working_status %}
+            {{ profile.get_working_status_display }}
+            {% else %}----
+            {% endif %}</p>
 
-             <p>{{ profile.description }}</p>
+             <p><b>Description: </b>{{ profile.description }}</p>
+            <p><b>TEAM: </b>
+            {% if profile.members %}
+                <a href="/team/{{ profile.members.id }}/detail">{{ profile.members.title }}</a>
+            {% else %}----
+            {% endif %}</p>
          </div>
          {% endfor %}
       </div>

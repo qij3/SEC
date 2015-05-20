@@ -8,13 +8,27 @@
         {% for team in object_list %}
          <div class="panel">
            <h3><a href="{{ team.get_absolute_url }}">{{ team.title }}</a></h3>
-            {% if team.status %}<p><b>Status: </b>{{ team.status }}</p>{% endif %}
-            <p><b>Project Status: </b>{% if team.project_status %}{{ team.get_project_status_display }}{% else %}----{% endif %}</p>
+            {% if team.status %}<p><b>Status: </b>{{ team.status }}</p>
+            {% endif %}
+            <p><b>Project Status: </b>
+            {% if team.project_status %}
+            {{ team.get_project_status_display }}
+            {% else %}----
+            {% endif %}</p>
+
+            {% if team.get_users %}<p>
+              <b>Members:
+              </b>
+              {% for profile in team.get_users %}
+              <br>
+                <a href="/profile/{{ profile.user.id }}/detail">{{ profile.user.username }}</a>
+             {% endfor %}
+            {% endif %}
 
             {% if team.image_file %}
               <img class="img-responsive" src="{{ team.image_file.url }}"></img>
             {% endif %}
-             <p>{{ team.description }}</p>
+             <p><b>Description: </b>{{ team.description }}</p>
          </div>
          {% endfor %}
       </div>
