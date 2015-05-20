@@ -18,3 +18,7 @@ Should we do create default profile when user logged in without Team defined ?
 Only Logged in User can define Team
 Only Logged in User can define Profile
 
+When user signup we should able to create profile for it.
+When user create team profile we should associate team with profile
+
+Edit theme html to check if user has profile

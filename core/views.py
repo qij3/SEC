@@ -63,9 +63,17 @@ class ProfileDetailView(DetailView):
 
 
 class ProfileCreateView(CreateView):
-  model = coremodels.Profile
-  template_name = 'base/form.html'
-  fields = "__all__"
+    model = coremodels.Profile
+    template_name = 'base/form.html'
+    fields = ['members', 'working_status', 'description']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+
+        return super(ProfileCreateView, self).form_valid(form)
+
+    def get_success_url(self):
+        return self.object.members.get_absolute_url()
 
 
 class ProfileUpdateView(UpdateView):
