@@ -1,0 +1,23 @@
+{% extends "base/theme.html" %}
+{% load bootstrap_pagination %}
+
+{% block main_content %}
+  <div class="row main-content">
+    <div class="col-md-2"></div>
+      <div class="col-md-8">
+        {% for profile in object_list %}
+         <div class="panel">
+           <h3><a href="{{ profile.get_absolute_url }}">{{ profile.user.username }}</a></h3>
+            {% if profile.working_status %}<p><b>Status: </b>{{ profile.working_status }}</p>{% endif %}
+            <p><b>User Status: </b>{% if profile.working_status %}{{ profile.get_working_status_display }}{% else %}----{% endif %}</p>
+
+             <p>{{ profile.description }}</p>
+         </div>
+         {% endfor %}
+      </div>
+    <div class="col-md-2"></div>
+  </div>
+{% endblock %}
+{% block pagination %}
+ {% bootstrap_paginate page_obj range=10 show_prev_next="false" show_first_last="true" %}
+{% endblock %}

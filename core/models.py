@@ -3,6 +3,8 @@ from django.db import models
 # Create your models here.
 from django.core.urlresolvers import reverse
 
+from django.contrib.auth.models import User
+
 import os
 import uuid
 
@@ -20,6 +22,12 @@ STATUS_CHOICES = (
      (2, 'Finished')
     )
 
+WORKING_STATUS = (
+     (0, 'None'),
+     (1, 'Part Time'),
+     (2, 'Full Time')
+    )
+
 class Team(models.Model):
     title = models.CharField(max_length=300)
     status = models.CharField(max_length=300)
@@ -34,3 +42,20 @@ class Team(models.Model):
 
     def get_absolute_url(self):
         return reverse(viewname="team_list", args=[self.id])
+
+    def get_users(self):
+        return self.profile_set.all()
+
+
+class Profile(models.Model):
+    members = models.ForeignKey(Team, null=True, blank=True)
+    user = models.ForeignKey(User, unique=True)
+    working_status = models.IntegerField(choices=WORKING_STATUS, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return self.user.username
+
+    def get_absolute_url(self):
+        return reverse(viewname="profile_list", args=[self.id])

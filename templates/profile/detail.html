@@ -1,0 +1,17 @@
+{% extends "base/theme.html" %}
+	{% block main_content %}
+	<div class="row main-content">
+ 		<div class="col-md-2"></div>
+ 		<div class="col-md-8">
+ 			<div class='panel'>
+ 				<h3>{{ profile.user.title}}</h3>
+ 				<p>{{ profile.description}}</p>
+	            <p><b>User Status: </b>{% if profile.working_status %}{{ profile.get_working_status_display }}{% else %}----{% endif %}</p>
+			 </div>
+		 </div>
+		 <div class="col-md-2"></div>
+		 <div class="col-md-4">
+		 	<a type="button" href="{% url 'profile_update' pk=profile.id %}" class="btn btn-large pull-right">Edit</a>
+		 </div>
+	</div>
+{% endblock %}
