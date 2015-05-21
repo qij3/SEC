@@ -66,7 +66,7 @@ class ProfileDetailView(DetailView):
 class ProfileCreateView(CreateView):
     model = coremodels.Profile
     template_name = 'base/form.html'
-    fields = ['members', 'working_status', 'description']
+    fields = "__all__"
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -80,7 +80,7 @@ class ProfileCreateView(CreateView):
 class ProfileUpdateView(UpdateView):
     model = coremodels.Profile
     template_name = 'base/form.html'
-    fields = ['members', 'working_status', 'description']
+    fields = "__all__"
 
 
 @sitegate_view(widget_attrs={'class': 'form-control', 'placeholder': lambda f: f.label}, template='form_bootstrap3') # This also prevents logged in users from accessing our sign in/sign up page.

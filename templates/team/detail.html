@@ -2,16 +2,32 @@
 	{% block main_content %}
 	<div class="row main-content">
  		<div class="col-md-2"></div>
- 		<div class="col-md-8">
- 			<div class='panel'>
- 				<h3>{{ team.title}}</h3>
- 				<p>{{ team.description}}</p>
-				<p><b>Status: </b>{% if team.project_status %}{{ team.get_project_status_display }}{% else %}----{% endif %}</p>
-			 </div>
-		 </div>
-		 <div class="col-md-2"></div>
-		 <div class="col-md-4">
-		 	<a type="button" href="{% url 'team_update' pk=team.id %}" class="btn btn-large pull-right">Edit</a>
-		 </div>
+	    <div class="container">
+	      <div class="page-header">
+	        <h3>Team Information:</h3>
+	      </div>
+	      <p>Name: {{ team.title}}</p>
+            <p>Industry: {% if team.project_status %}
+              {{ profile.get_project_status_display }}
+            {% else %} ----
+              {% endif %}</p>
+            <p>Description: {% if team.description %}
+              {{ team.description }}
+            {% else %} ----
+              {% endif %}</p>
+	      </div>
+	    </div>
+
+        {% if team.image_file %}
+	    <div class="container">
+	      <div class="page-header">
+              <img class="img-responsive" src="{{ team.image_file.url }}"></img>
+	      </div>
+	    </div>
+        {% endif %}
+
+	    <div class="container">
+		    <p><a type="button" href="{% url 'team_update' pk=team.id %}" class="btn btn-primary">Edit Team Page &raquo;</a></p>
+	    </div>
 	</div>
 {% endblock %}

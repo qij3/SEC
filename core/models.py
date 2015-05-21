@@ -16,25 +16,29 @@ def upload_to_location(instance, filename):
     return os.path.join('uploads/', filename)
 
 # Team choices
-STATUS_CHOICES = (
+INDUSTRY = (
      (0, 'None'),
-     (1, 'In Process'),
-     (2, 'Finished')
+     (1, 'IT'),
+     (2, 'Finance'),
+     (3, 'Hardware'),
+     (4, 'Bio'),
+     (5, 'Others'),
     )
 
-WORKING_STATUS = (
+TEAM_STATUS = (
      (0, 'None'),
-     (1, 'Part Time'),
-     (2, 'Full Time')
+     (1, 'MVP - SEEKING ANGEL'),
+     (2, 'SEEKING - A Round'),
+     (3, 'SEEKING - B Round'),
+     (4, 'Others'),
     )
+
 
 class Team(models.Model):
-    title = models.CharField(max_length=300)
-    status = models.CharField(max_length=300)
+    title = models.CharField(max_length=300) # Team Name
+    project_status = models.IntegerField(choices=TEAM_STATUS, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    project_status = models.IntegerField(choices=STATUS_CHOICES, null=True, blank=True)
-
     image_file = models.ImageField(upload_to=upload_to_location, null=True, blank=True)
 
     def __unicode__(self):
@@ -50,9 +54,18 @@ class Team(models.Model):
 class Profile(models.Model):
     members = models.ForeignKey(Team, null=True, blank=True)
     user = models.OneToOneField(User)
-    working_status = models.IntegerField(choices=WORKING_STATUS, null=True, blank=True)
+    # Basic Info both required
+    name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=254)
+    # Experience & Skills    
+    # Need to investigate how to make as multiple choices as Linkedin
+    company = models.CharField(max_length=100, blank= True)
+    skills = models.CharField(max_length=100, blank= True)
+
+    industry = models.IntegerField(choices=INDUSTRY, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    image_file = models.ImageField(upload_to=upload_to_location, null=True, blank=True)
 
     def __unicode__(self):
         return self.description

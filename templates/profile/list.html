@@ -4,15 +4,19 @@
 {% block main_content %}
   <div class="row main-content">
     <div class="col-md-2"></div>
-      <div class="col-md-8">
+    <div class='row'>
+        <div class="col-md-8">
         {% for profile in object_list %}
-         <div class="panel">
-           <h3><a href="{{ profile.get_absolute_url }}">{{ profile.user.username }}</a></h3>
+         <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title"><a href="{{ profile.get_absolute_url }}">{{ profile.user.username }}</a></h3>
+          </div>
+          <div class="panel-body">
             <p><b>User Status: </b>
-            {% if profile.working_status %}
-              {{ profile.get_working_status_display }}
+            {% if profile.industry %}
+              {{ profile.get_industry_display }}
             {% else %}----
-              {% endif %}</p>
+            {% endif %}</p>
 
              <p><b>Description: </b>{{ profile.description }}</p>
             <p><b>TEAM: </b>
@@ -20,9 +24,11 @@
                 <a href="/team/{{ profile.members.id }}/detail">{{ profile.members.title }}</a>
             {% else %}----
             {% endif %}</p>
-         </div>
+          </div>    
+          </div>
          {% endfor %}
       </div>
+    </div>
     <div class="col-md-2"></div>
   </div>
 {% endblock %}

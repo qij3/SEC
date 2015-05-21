@@ -2,16 +2,46 @@
 	{% block main_content %}
 	<div class="row main-content">
  		<div class="col-md-2"></div>
- 		<div class="col-md-8">
- 			<div class='panel'>
- 				<h3>{{ profile.user.title}}</h3>
- 				<p>{{ profile.description}}</p>
-	            <p><b>User Status: </b>{% if profile.working_status %}{{ profile.get_working_status_display }}{% else %}----{% endif %}</p>
-			 </div>
-		 </div>
-		 <div class="col-md-2"></div>
-		 <div class="col-md-4">
-		 	<a type="button" href="{% url 'profile_update' pk=profile.id %}" class="btn btn-large pull-right">Edit</a>
-		 </div>
+	    <div class="container">
+	      <div class="page-header">
+	        <h3>Basic Info:</h3>
+	      </div>
+	      <p>Name: {{ profile.name}}</p>
+	      <p>Email: {{ profile.email}}</p>
+	    </div>
+
+	    <div class="container">
+	      <div class="page-header">
+	      <h3>Experience & Skills:</h3>
+            <p>Industry: {% if profile.industry %}
+              {{ profile.get_industry_display }}
+            {% else %} ----
+              {% endif %}</p>
+            <p>Company: {% if profile.company %}
+              {{ profile.company }}
+            {% else %} ----
+              {% endif %}</p>
+            <p>Skills: {% if profile.skills %}
+              {{ profile.skills }}
+            {% else %} ----
+              {% endif %}</p>
+            <p>Introduction: {% if profile.description %}
+              {{ profile.description }}
+            {% else %} ----
+              {% endif %}</p>
+	      </div>
+	    </div>
+        {% if profile.image_file %}
+	    <div class="container">
+	      <div class="page-header">
+              <img class="img-responsive" src="{{ profile.image_file.url }}"></img>
+	      </div>
+	    </div>
+        {% endif %}
+
+	    <div class="container">
+		    <p><a type="button" href="{% url 'profile_update' pk=profile.id %}" class="btn btn-primary">Edit Profile Page &raquo;</a></p>
+	    </div>
+
 	</div>
 {% endblock %}
