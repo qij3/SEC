@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'storages',
     'widget_tweaks',
     'bootstrap_pagination',
+    'disqus',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = ("django.contrib.auth.context_processors.auth",
@@ -156,4 +157,8 @@ AWS_SECRET_ACCESS_KEY = os.environ.get('AWSSecretKey')
 
 AWS_STORAGE_BUCKET_NAME = 'sec-startup'
 
+
+# Disqus
+DISQUS_API_KEY = '6Dz4eHp9lfpdukBGRsipyZLBRVWfT8zodHGDq0lZHdjE0eUZHiRrRtrAW90kQM8j'
+DISQUS_WEBSITE_SHORTNAME = 'secapplication'
 
