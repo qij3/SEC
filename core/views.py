@@ -20,6 +20,8 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 
+# Logout message alert
+from django.contrib import messages
 
 class LandingView(TemplateView):
     template_name = 'base/index.html'
@@ -85,6 +87,7 @@ class ProfileUpdateView(UpdateView):
 
 @sitegate_view(widget_attrs={'class': 'form-control', 'placeholder': lambda f: f.label}, template='form_bootstrap3') # This also prevents logged in users from accessing our sign in/sign up page.
 def entrance(request):
+
     return render(request, 'base/entrance.html', {'title': 'Sign in & Sign up'})
 
 def logout_view(request, next_page=None,
@@ -95,5 +98,7 @@ def logout_view(request, next_page=None,
     Logs out the user and displays 'You are logged out' message.
     """
     logout(request)
+    messages.success(request, 'Log Out Successfully.')
+
     # Redirect goes index page
     return HttpResponseRedirect('/')
