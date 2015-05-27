@@ -82,6 +82,9 @@ class ProfileCreateView(CreateView):
     template_name = 'base/form.html'
     fields =['members', 'name', 'email', 'company', 'skills', 'industry', 'description', 'image_file']
 
+    def get_initial(self):
+        return { 'user': self.request.user, 'email': self.request.user.email }
+
     def form_valid(self, form):
         form.instance.user = self.request.user
 

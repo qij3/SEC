@@ -7,6 +7,15 @@
 	        <h3>Team Information:</h3>
 	      </div>
 	      <p>Name: {{ team.title}}</p>
+            {% if team.get_users %}<p>
+              <b>Members:
+              </b>
+              {% for profile in team.get_users %}
+              <br>
+                <a href="/profile/{{ profile.id }}/detail">{{ profile.user.username }}</a>
+             {% endfor %}
+            {% endif %}
+
             <p>Industry: {% if team.project_status %}
               {{ profile.get_project_status_display }}
             {% else %} ----
