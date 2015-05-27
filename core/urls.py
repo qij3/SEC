@@ -18,7 +18,8 @@ urlpatterns = patterns('',
  url(r'profile/(?P<pk>\d+)/update/$', login_required(coreviews.ProfileUpdateView.as_view()), name='profile_update'),
 
 
- url(r'entrance/$', coreviews.entrance),
+ url(r'signup/$', coreviews.register),
+ url(r'login/$', coreviews.user_login),
  url(r'logout/$', coreviews.logout_view),
 
 )

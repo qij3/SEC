@@ -45,7 +45,6 @@ INSTALLED_APPS = (
     'storages',
     'widget_tweaks',
     'bootstrap_pagination',
-    'disqus',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = ("django.contrib.auth.context_processors.auth",

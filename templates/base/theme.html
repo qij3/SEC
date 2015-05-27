@@ -2,20 +2,20 @@
 
 {% block main_content %}
 	{% block navigation %}
-		 {% if user.is_authenticated %}
-        {% if request.user.profile %}
-        <li><a class="page-scroll" href="/profile/{{user.id}}/detail">Welcome back {{user.username}}</a></li>
-        {% else %}
-        <li><a class="page-scroll" href="/profile/create">Welcome back {{user.username}}</a></li>
-        {% endif %}
-		 {% endif %} 
-
 		 <li>
 		 	<a class="page-scroll" href="/team/">Team Views</a>
 		 </li>
 		 <li>
 		 	<a class="page-scroll" href="/profile/">User Views</a>
 		 </li>
+
+		 {% if user.is_authenticated %}
+        {% if request.user.profile %}
+        <li><a class="page-scroll" href="/profile/{{user.profile.id}}/detail">Edit Profile</a></li>
+        {% else %}
+        <li><a class="page-scroll" href="/profile/create">Create Profile</a></li>
+        {% endif %}
+		 {% endif %} 
 
 		 {% if user.is_authenticated %}
 			 	<li>
@@ -26,7 +26,11 @@
 			 	</li>
 			 {% else %}
 			 	<li>
-			 		<a class="page-scroll" href="/entrance/">Log In</a>
+			 		<a class="page-scroll" href="/signup/">Sign Up</a>
+			 	</li> 
+
+			 	<li>
+			 		<a class="page-scroll" href="/login/">Log In</a>
 			 	</li> 
 		 {% endif %} 
 	{% endblock %}

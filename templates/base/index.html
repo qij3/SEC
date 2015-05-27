@@ -66,24 +66,29 @@
                     <li>
                         <a class="page-scroll" href="#contact">Contact</a>
                     </li>
+                     {% if user.is_authenticated %}
                      <li>
                      <a class="page-scroll" href="/team/">Team Views</a>
                      </li>
                      <li>
                      <a class="page-scroll" href="/profile/">User Views</a>
                      </li>
-                         {% if user.is_authenticated %}
-                                <li>
-                                    <a class="page-scroll" href="/team/create/">Create Team Profile</a>
-                                </li>
-                                <li>
-                                    <a class="page-scroll" href="/logout/">Sign out</a>
-                                </li>
-                             {% else %}
-                                <li>
-                                    <a class="page-scroll" href="/entrance/">Log In</a>
-                                </li> 
-                         {% endif %} 
+
+                    <li>
+                        <a class="page-scroll" href="/team/create/">Create Team Profile</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="/logout/">Sign out</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a class="page-scroll" href="/signup/">Sign Up</a>
+                    </li> 
+
+                    <li>
+                        <a class="page-scroll" href="/login/">Log In</a>
+                    </li> 
+                     {% endif %} 
                     {% endblock %}
                 </ul>
             </div>
