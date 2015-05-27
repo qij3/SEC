@@ -74,9 +74,15 @@
                      <a class="page-scroll" href="/profile/">User Views</a>
                      </li>
 
-                    <li>
-                        <a class="page-scroll" href="/team/create/">Create Team Profile</a>
-                    </li>
+                        {% if user.profile.members %}
+                        <li>
+                            <a class="page-scroll" href="/team/{{user.profile.members.id}}/update">Edit Team Profile</a>
+                        </li>
+                        {% else %}
+                        <li>
+                            <a class="page-scroll" href="/team/create/">Create Team Profile</a>
+                        </li>
+                        {% endif %}
                     <li>
                         <a class="page-scroll" href="/logout/">Sign out</a>
                     </li>

@@ -18,9 +18,15 @@
 		 {% endif %} 
 
 		 {% if user.is_authenticated %}
+		 		{% if user.profile.members %}
+			 	<li>
+			 		<a class="page-scroll" href="/team/{{user.profile.members.id}}/update">Edit Team Profile</a>
+			 	</li>
+			 	{% else %}
 			 	<li>
 			 		<a class="page-scroll" href="/team/create/">Create Team Profile</a>
 			 	</li>
+			 	{% endif %}
 			 	<li>
 			 		<a class="page-scroll" href="/logout/">Sign out</a>
 			 	</li>
