@@ -45,6 +45,8 @@ INSTALLED_APPS = (
     'storages',
     'widget_tweaks',
     'bootstrap_pagination',
+    'social.apps.django_app.default',
+
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = ("django.contrib.auth.context_processors.auth",
